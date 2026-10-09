@@ -1,6 +1,6 @@
 # Kane Guglielmi
 
-A stark, enigmatic one-page portfolio built with plain HTML, CSS and a little JavaScript. No build step.
+Site
 
 ## Files
 
