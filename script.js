@@ -8,7 +8,7 @@
   // The labels this person refuses. Edit freely.
   var words = [
     "director", "creator", "brand", "persona", "genre",
-    "writer", "artist", "trend", "category", "producer"
+    "writer", "journalist", "trend", "category", "producer"
   ];
   var el = document.getElementById("word");
   if (el && !reduce) {
