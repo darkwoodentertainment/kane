@@ -10,18 +10,7 @@
   --sans: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --mono: "Space Mono", ui-monospace, Menlo, monospace;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #e6e1d6;
-    --text: #12110f;
-    --muted: #7a7468;
-    --line: #cfc9bb;
-    --accent: #6d5a3d;
-    --glow: rgba(0, 0, 0, 0.05);
-    --grain: 0.12;
-  }
+  color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }

@@ -1,13 +1,13 @@
 # Kane Guglielmi
 
-Site
+A stark, enigmatic one-page portfolio built with plain HTML, CSS and a little JavaScript. No build step.
 
 ## Files
 
 | File | Purpose |
 | --- | --- |
 | `index.html` | Page content |
-| `style.css` | All styling (dark by default, bone/stone light mode automatic) |
+| `style.css` | All styling (always dark, whatever the visitor's device setting) |
 | `script.js` | Rotating "not a ___" words, cursor glow, footer year |
 | `render.yaml` | Optional Render config (static site) |
 
