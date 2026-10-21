@@ -117,30 +117,6 @@ main { flex: 1; display: flex; }
   text-transform: uppercase;
 }
 
-/* The thing it refuses to be */
-.denial {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 0.35em;
-  font-family: var(--serif);
-  font-size: clamp(1.8rem, 5vw, 3.4rem);
-  line-height: 1.1;
-}
-
-.denial .not { font-style: italic; color: var(--muted); }
-
-.denial .word {
-  display: inline-block;
-  min-width: 2ch;
-  text-decoration: line-through;
-  text-decoration-thickness: 0.06em;
-  transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
-}
-
-.denial .word.out { opacity: 0; transform: translateY(0.25em); filter: blur(6px); }
-.denial .dot { margin-left: -0.3em; }
-
 /* Redacted line */
 .line {
   margin: 0;
@@ -156,10 +132,19 @@ main { flex: 1; display: flex; }
   transition: background 0.35s ease, color 0.35s ease;
 }
 
-.redact:hover, .redact:focus-visible {
+.redact:hover, .redact:focus-visible, .redact.is-revealed {
   background: transparent;
   color: var(--accent);
   outline: none;
+}
+
+/* The one redacted word that leads somewhere */
+.redact-link { cursor: pointer; }
+
+.redact-link:hover, .redact-link:focus-visible, .redact-link.is-revealed {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
 }
 
 .actions { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 32px; margin-top: 8px; }
@@ -228,9 +213,7 @@ main { flex: 1; display: flex; }
 @media (prefers-reduced-motion: no-preference) {
   .hero > *:not(.name) { opacity: 0; transform: translateY(12px); animation: rise 0.9s ease forwards; }
   .hero > *:nth-child(3) { animation-delay: 0.2s; }
-  .hero > *:nth-child(5) { animation-delay: 0.4s; }
-  .hero > *:nth-child(6) { animation-delay: 0.6s; }
-  .hero > *:nth-child(7) { animation-delay: 0.8s; }
+  .hero > *:nth-child(4) { animation-delay: 0.4s; }
 }
 
 @keyframes rise { to { opacity: 1; transform: none; } }
