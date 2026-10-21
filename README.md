@@ -8,13 +8,12 @@ A stark, enigmatic one-page portfolio built with plain HTML, CSS and a little Ja
 | --- | --- |
 | `index.html` | Page content |
 | `style.css` | All styling (always dark, whatever the visitor's device setting) |
-| `script.js` | Rotating "not a ___" words, cursor glow, footer year |
+| `script.js` | Cursor glow, footer year |
 | `render.yaml` | Optional Render config (static site) |
 
 ## Customise
 
-- `index.html`: the footer email is plain text (not a link). Instagram, YouTube and X links sit in the icon-only `socials` list. Rewrite the "I create ___ for ___" line to suit you (keep it cryptic).
-- `script.js`: edit the `words` list to change the labels that cycle through.
+- `index.html`: the footer email is plain text (not a link). Instagram, YouTube and X links sit in the icon-only `socials` list. The redacted word "everyone" links to commonwealthfilm.com (the `redact-link` anchor). Rewrite the "I create ___ for ___" line to suit you (keep it cryptic). The last redacted word, "everyone", is the link to commonwealthfilm.com (the `redact-link` anchor).
 - `style.css`: colours sit at the top under `:root` (`--accent` is the sandy stone tone).
 
 ## Preview locally
