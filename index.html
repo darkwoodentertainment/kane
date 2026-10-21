@@ -1,68 +1,516 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kane Guglielmi</title>
-  <meta name="description" content="Kane Guglielmi. Difficult to describe.">
-  <meta name="theme-color" content="#0a0a09">
-  <meta name="color-scheme" content="dark">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Common Wealth | Watch the Feature Documentary</title>
+<meta name="description" content="Watch COMMON WEALTH, the feature documentary by writer/director Kane Guglielmi. Buy and stream it anywhere.">
+<meta name="theme-color" content="#191b1d">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="Common Wealth | Watch the Feature Documentary">
+<meta property="og:description" content="Watch COMMON WEALTH, the feature documentary by writer/director Kane Guglielmi.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://commonwealthfilm.com/">
+<meta property="og:url" content="https://commonwealthfilm.com/">
+<meta property="og:site_name" content="Common Wealth">
+<meta property="og:image" content="https://commonwealthfilm.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Common Wealth: Kane Guglielmi rides a moped through the Tuscan countryside">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@kaneguglielmi">
+<meta name="twitter:image" content="https://commonwealthfilm.com/assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Layout: full-bleed dark film page; logo hero, then alternating bands for watch, film, reviews, questions. */
+  :root {
+    color-scheme: dark;
+    --bg: #191b1d;
+    --bg-2: #202326;
+    --bg-3: #2a2e32;
+    --text: #f1efe9;
+    --text-2: #d7d8d6;
+    --muted: #a9adb1;
+    --accent: #e8c27a;
+    --accent-ink: #1a1710;
+    --line: rgba(255,255,255,.12);
+
+    /* One typeface for all text. The official lettering appears only as the logo image (header + hero). */
+    --font-body: "Barlow", system-ui, sans-serif;
+
+    /* One type scale for the whole page */
+    --fs-xs: 13px;   /* labels, nav, fine print, footer */
+    --fs-sm: 14px;   /* buttons, placeholders */
+    --fs-base: 17px; /* all running text */
+    --fs-lg: 19px;   /* intro lines under headings, hero tagline */
+    --fs-h3: 22px;   /* card headings */
+    --fs-h2: clamp(28px, 3.8vw, 40px); /* every section heading */
+    --track-label: .16em;
+
+    --gutter: 16px;
+    --max: 1120px;
+    --section-pad: 88px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 400 var(--fs-base)/1.65 var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video, iframe { max-width: 100%; display: block; }
+  a { color: inherit; }
+  p { margin: 0; }
+  .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
+
+  /* Headings: same family as the text, heavier and tracked */
+  h1, h2, h3 { margin: 0; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; line-height: 1.1; text-wrap: balance; }
+  h2 { font-size: var(--fs-h2); }
+  h3 { font-size: var(--fs-h3); }
+
+  /* Small uppercase labels share one style */
+  .eyebrow, nav.main a, .btn, .embed-placeholder strong {
+    font-family: var(--font-body); font-weight: 600; text-transform: uppercase; letter-spacing: var(--track-label);
+  }
+
+  /* Header */
+  header.site {
+    position: fixed; inset: 0 0 auto 0; z-index: 20;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: linear-gradient(to bottom, rgba(25,27,29,.92), rgba(25,27,29,0));
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand { display: block; line-height: 0; }
+  .brand img { height: 40px; width: auto; }
+  nav.main { display: flex; gap: 26px; align-items: center; }
+  nav.main a { font-size: var(--fs-xs); text-decoration: none; color: var(--muted); transition: color .2s; }
+  nav.main a:hover { color: var(--text); }
+  nav.main a.pill { color: var(--accent-ink); background: var(--accent); padding: 9px 16px; border-radius: 2px; }
+  nav.main a.pill:hover { color: var(--accent-ink); filter: brightness(1.06); }
+  .nav-follow { display: flex; align-items: center; gap: 14px; padding-right: 26px; border-right: 1px solid var(--line); }
+  .nav-follow-label { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: var(--track-label); color: var(--muted); white-space: nowrap; }
+  nav.main .nav-follow a { color: var(--text-2); display: inline-flex; }
+  nav.main .nav-follow a:hover { color: var(--accent); }
+  .nav-follow .social-icon { width: 18px; height: 18px; }
+  @media (max-width: 1080px) { .nav-follow-label { display: none; } }
+  @media (max-width: 720px) {
+    nav.main > a:not(.pill) { display: none; }
+    nav.main { gap: 18px; }
+    .nav-follow { padding-right: 0; border-right: 0; }
+  }
+
+  /* Hero */
+  .hero {
+    position: relative; min-height: 100svh; display: flex; align-items: flex-end;
+    background: radial-gradient(120% 90% at 70% 10%, #2f3a40 0%, var(--bg) 60%);
+    overflow: hidden;
+  }
+  .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .8; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 4%, rgba(25,27,29,.1) 55%, rgba(25,27,29,.55)); }
+  .hero .wrap { position: relative; z-index: 2; padding-block: 120px 72px; display: grid; gap: 22px; justify-items: start; }
+  .eyebrow { font-size: var(--fs-xs); color: var(--accent); }
+  .hero-logo { width: min(560px, 82vw); height: auto; }
+  .tagline { max-width: 560px; font-size: var(--fs-lg); color: var(--text-2); }
+
+  /* Buttons */
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 15px 28px; border-radius: 2px; border: 1px solid transparent;
+    font-size: var(--fs-sm); line-height: 1; text-decoration: none; cursor: pointer;
+    transition: transform .15s, filter .2s, background .2s;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover { filter: brightness(1.07); }
+  .btn.ghost { border-color: rgba(255,255,255,.35); color: var(--text); }
+  .btn.ghost:hover { background: rgba(255,255,255,.08); }
+
+  /* Sections: same rhythm everywhere */
+  section { padding-block: var(--section-pad); }
+  .section-head { display: grid; gap: 12px; margin-bottom: 40px; max-width: 640px; }
+  .lede { font-size: var(--fs-lg); color: var(--muted); }
+  .band { background: var(--bg-2); border-block: 1px solid var(--line); }
+
+  /* Watch / purchase */
+  .watch-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: start; }
+  .watch-grid > * { min-width: 0; }
+  @media (max-width: 900px) { .watch-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .player-frame { background: #000; border: 1px solid var(--line); aspect-ratio: 16 / 9; max-width: 100%; position: relative; }
+  .player-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  /* Placeholder shown until the real Vimeo OTT embed is pasted in */
+  .embed-placeholder {
+    position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px;
+    background: repeating-linear-gradient(135deg, #15171a 0 14px, #181a1d 14px 28px); color: var(--muted); font-size: var(--fs-sm);
+  }
+  .embed-placeholder strong { display: block; color: var(--text); font-size: var(--fs-sm); margin-bottom: 6px; }
+  .buy-card { background: var(--bg-3); border: 1px solid var(--line); padding: 28px; display: grid; gap: 16px; }
+  .buy-card p { color: var(--muted); }
+  .buy-card ul { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 10px; }
+  .buy-card li { display: flex; gap: 12px; align-items: flex-start; }
+  .buy-card li::before { content: ""; flex: none; width: 7px; height: 7px; margin-top: 10px; background: var(--accent); border-radius: 50%; }
+  .buy-card .btn { width: 100%; }
+  .fn { color: var(--accent); text-decoration: none; font-weight: 700; padding: 0 4px; }
+  .fn:hover { text-decoration: underline; }
+  .inline-link { color: var(--accent); text-underline-offset: 3px; }
+  .inline-link:hover { color: var(--text); }
+  details:target summary { color: var(--accent); }
+  .fine { font-size: var(--fs-xs); color: var(--muted); text-align: center; }
+  /* Official classification marking + consumer advice */
+  .classification { display: flex; align-items: center; gap: 12px; font-size: var(--fs-xs); line-height: 1.4; color: var(--text-2); }
+  .classification p { margin: 0; max-width: 32ch; }
+  .class-mark { flex: none; height: auto; }
+  /* Email sign-up */
+  .updates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .updates-grid > * { min-width: 0; }
+  .updates-grid .section-head { margin-bottom: 0; }
+  @media (max-width: 900px) { .updates-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .follow { display: grid; gap: 12px; margin-top: 20px; }
+  .follow-label { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: var(--track-label); color: var(--accent); }
+  .socials { display: flex; flex-wrap: wrap; gap: 10px 22px; }
+  .socials a { display: inline-flex; align-items: center; gap: 10px; color: var(--text-2); text-decoration: none; font-size: var(--fs-sm); transition: color .2s; }
+  .socials a:hover { color: var(--accent); }
+  .social-icon { width: 22px; height: 22px; flex: none; }
+  .signup { display: grid; gap: 16px; background: var(--bg-2); border: 1px solid var(--line); padding: 28px; }
+  .field { display: grid; gap: 6px; }
+  .field label { font-size: var(--fs-xs); font-weight: 600; text-transform: uppercase; letter-spacing: var(--track-label); color: var(--muted); }
+  .field input, .field select {
+    width: 100%; font: 400 var(--fs-base)/1.3 var(--font-body); color: var(--text);
+    background: var(--bg); border: 1px solid rgba(255,255,255,.22); border-radius: 2px; padding: 13px 14px;
+  }
+  .field input::placeholder { color: #7d8186; }
+  .field input:focus, .field select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .signup .btn { width: 100%; }
+  .signup-status { font-size: var(--fs-sm); color: var(--accent); min-height: 0; }
+  .signup-status:empty { display: none; }
+  .signup-fine { font-size: var(--fs-xs); color: var(--muted); }
+  .region-note a { color: var(--accent); }
+  .region-note { font-size: var(--fs-xs); color: var(--muted); text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .about-grid > * { min-width: 0; }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .about-copy { display: grid; gap: 18px; }
+  .about-copy .section-head { margin-bottom: 4px; }
+  .about-copy p { color: var(--text-2); }
+  .about-copy .cta-row { margin-top: 10px; }
+  .poster-slot {
+    aspect-ratio: 1000 / 1348; max-width: min(440px, 100%); width: 100%; margin-inline: auto; display: grid; place-items: center; text-align: center;
+    background: linear-gradient(160deg, #2c3a40, #1b1f22); border: 1px solid var(--line); color: var(--muted); font-size: var(--fs-sm); padding: 0;
+    overflow: hidden;
+  }
+  .poster-slot img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Reviews */
+  .review-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 900px) { .review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
+  .review-slot { margin: 0; aspect-ratio: 4 / 5; max-width: 100%; background: var(--bg-3); border: 1px solid var(--line); display: grid; place-items: center; text-align: center; color: var(--muted); font-size: var(--fs-sm); padding: 0; overflow: hidden; }
+  .review-slot img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Questions */
+  .faq { max-width: 760px; border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); padding-block: 20px; }
+  summary { cursor: pointer; list-style: none; font-size: var(--fs-lg); font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--accent); font-size: var(--fs-h3); font-weight: 400; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
+  details .legal-note { font-size: var(--fs-sm); font-style: italic; }
+
+  /* Footer */
+  footer { padding-block: 48px 56px; color: var(--muted); font-size: var(--fs-xs); border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; align-items: center; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  /* Mobile sticky buy bar: keeps the primary action one tap away */
+  .sticky-buy { display: none; }
+  @media (max-width: 720px) {
+    :root { --section-pad: 64px; }
+    .sticky-buy { display: block; position: fixed; inset: auto 0 0 0; z-index: 30; padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(25,27,29,.96); border-top: 1px solid var(--line); }
+    .sticky-buy .btn { width: 100%; }
+    body { padding-bottom: 74px; }
+  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero video { display: none; }
+    .hero { background: var(--bg) url("assets/hero-poster.jpg") center / cover no-repeat; }
+  }
+</style>
 </head>
 <body>
 
-  <main id="top">
-    <section class="hero">
-      <p class="tag">[ imagination ≡ reality ]</p>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Common Wealth, back to top"><img src="assets/common-wealth-logo.png" alt="Common Wealth" width="115" height="42"></a>
+    <nav class="main" aria-label="Main">
+      <div class="nav-follow">
+        <span class="nav-follow-label">Follow Kane’s journey</span>
+        <a href="https://instagram.com/kaneguglielmi" target="_blank" rel="noopener" aria-label="Kane Guglielmi on Instagram"><svg class="social-icon" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"/></svg></a>
+        <a href="https://x.com/kaneguglielmi" target="_blank" rel="noopener" aria-label="Kane Guglielmi on X"><svg class="social-icon" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z"/></svg></a>
+      </div>
+      <a href="#about">The Film</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#updates">Updates</a>
+      <a href="#faq">FAQ</a>
+      <a class="pill" href="#watch">Watch Now</a>
+    </nav>
+  </div>
+</header>
 
-      <h1 class="name">Kane<br>Guglielmi</h1>
+<main id="top">
 
-      <p class="line">
-        I create
-        <span class="redact" tabindex="0">things</span>
-        for
-        <span class="redact" tabindex="0">no one</span>
-        and sometimes
-        <a class="redact redact-link" href="https://commonwealthfilm.com" target="_blank" rel="noopener" aria-label="Common Wealth, a film by Kane Guglielmi (opens commonwealthfilm.com)">everyone</a>.
-      </p>
+  <!-- HERO -->
+  <div class="hero">
+    <!-- Banner loop: 8s, silent. Smaller file for phones, full HD for larger screens. Still frame shows while loading. -->
+    <video autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+      <source src="assets/hero-mobile.mp4" type="video/mp4" media="(max-width: 720px)">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+    <div class="wrap">
+      <div class="eyebrow">A feature documentary by Kane Guglielmi</div>
+      <h1><img class="hero-logo" src="assets/common-wealth-logo.png" alt="Common Wealth" width="1600" height="586"></h1>
+      <p class="tagline">A conservatively raised capitalist sets out on a global journey to explore plausible alternatives to the established economic and political models.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#watch">Watch the film</a>
+      </div>
+    </div>
+  </div>
 
-      <ul class="socials" aria-label="Social profiles">
-        <li>
-          <a href="https://www.instagram.com/kaneguglielmi" target="_blank" rel="noopener" aria-label="Instagram: kaneguglielmi">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="7" width="18" height="13" rx="2.5"/>
-              <path d="M8.5 7l1.4-2.5h4.2L15.5 7"/>
-              <circle cx="12" cy="13.5" r="3.6"/>
-            </svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/@KaneGuglielmi" target="_blank" rel="noopener" aria-label="YouTube: @KaneGuglielmi">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M10 8.5v7l6-3.5z"/>
-            </svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://x.com/kaneguglielmi" target="_blank" rel="noopener" aria-label="X: kaneguglielmi">
-            <span class="x-mark" aria-hidden="true"></span>
-          </a>
-        </li>
-      </ul>
-    </section>
-  </main>
+  <!-- WATCH / BUY -->
+  <section id="watch" class="band" aria-labelledby="watch-title">
+    <div class="wrap">
+      <div class="section-head"><h2 id="watch-title">Watch Common Wealth</h2></div>
 
-  <footer class="bottom">
-    <p>&copy; <span id="year">2026</span> &mdash; all rights unclear</p>
-    <ul>
-      <li>ciao@darkwoodentertainment.com</li>
-    </ul>
-  </footer>
+      <div class="watch-grid">
+        <div>
+          <div class="player-frame" id="ott-embed">
+            <!-- Vimeo OTT trailer + buy widget (responsive embed, gold button) -->
+            <div style="padding:56.25% 0 0 0;position:relative">
+              <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://embed.vhx.tv/packages/271330?buy_btn=1&amp;color=e8c27a&amp;vimeo=1" width="640" height="360" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen title="Common Wealth trailer and purchase"></iframe>
+            </div>
+          </div>
+        </div>
 
-  <script src="script.js"></script>
+        <aside class="buy-card" aria-label="Purchase">
+          <h3>Watch at Home</h3>
+          <p>Buy once, watch whenever you like. Runtime 74 minutes.</p>
+          <!-- Australian Classification: PG, CLAS-1368605 (classification.gov.au/titles/common-wealth) -->
+          <div class="classification"><img class="class-mark" src="assets/classification-pg.png" alt="Classified PG" width="32" height="32"><p>Mild themes, suicide references and coarse language</p></div>
+          <ul>
+            <li>Stream instantly after checkout</li>
+            <li>Log in any time to watch again</li>
+            <li><span>Works on phone, tablet, computer and TV<a class="fn" href="#devices" aria-label="See which devices are supported">*</a></span></li>
+            <li><span>5.1 surround and stereo available on compatible devices<a class="fn" href="#devices" aria-label="See which devices support 5.1 surround">*</a></span></li>
+            <li><span>For personal viewing only. <a class="inline-link" href="#screenings">Hosting a screening?</a></span></li>
+          </ul>
+          <!-- data-ott links are filled in from OTT_URL in the script at the bottom -->
+          <a class="btn primary" data-ott href="#">Buy &amp; watch now</a>
+          <div class="fine">Already purchased? <a data-ott="login" href="#">Log in to watch</a></div>
+          <!-- Remove this note when the film is released for streaming in Australia and New Zealand -->
+          <p class="region-note">Not yet available to stream in Australia or New Zealand. <a href="#updates">Get notified</a> when it is.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <div class="poster-slot">
+        <img src="assets/poster.jpg" alt="Common Wealth film poster: a man in a helmet and floral shirt rides a moped down a cobbled street" width="1000" height="1348" loading="lazy">
+      </div>
+      <div class="about-copy">
+        <div class="section-head"><h2 id="about-title">The Film</h2></div>
+        <p><strong>COMMON WEALTH</strong> follows a conservatively raised capitalist on a global and evolutionary journey exploring plausible alternatives to the established economic and political models.</p>
+        <p>Filmed across 8 x countries, and presented on a unique, ever-moving backdrop with a politically neutral approach, it’s a film for everyone.</p>
+        <p>Written, directed, produced and presented by Kane Guglielmi.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#watch">Watch now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="band" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <div class="section-head"><h2 id="reviews-title">Audience Reviews</h2></div>
+      <div class="review-grid">
+        <!-- To add more: copy a line, save the image as assets/review-N.jpg (4:5 portrait) -->
+        <figure class="review-slot"><img src="assets/review-1.jpg" alt="Audience review: “A different form of hero’s journey” (Lynda, Melbourne)" width="1080" height="1350" loading="lazy"></figure>
+        <figure class="review-slot"><img src="assets/review-2.jpg" alt="Audience review: “As someone who has worked in social impact for my career, this is the most important story I’ve seen told.” (Amy, Castlemaine)" width="1080" height="1350" loading="lazy"></figure>
+        <figure class="review-slot"><img src="assets/review-3.jpg" alt="Audience review: “Hopeful and inspired” (Isabel, Castlemaine)" width="1080" height="1350" loading="lazy"></figure>
+        <figure class="review-slot"><img src="assets/review-4.jpg" alt="Audience review: “Mind-blown” (Suz, Melbourne)" width="1080" height="1350" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL UPDATES (Kit) -->
+  <section id="updates" aria-labelledby="updates-title">
+    <div class="wrap updates-grid">
+      <div class="section-head">
+        <h2 id="updates-title">Get Notified</h2>
+        <p class="lede">Be the first to know when <strong>COMMON WEALTH</strong> streams in Australia and New Zealand, plus screenings and news from Kane.</p>
+        <div class="follow">
+          <p class="follow-label">Follow Kane’s journey</p>
+          <!-- Icons: Font Awesome Free. ! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. -->
+          <div class="socials">
+            <a href="https://instagram.com/kaneguglielmi" target="_blank" rel="noopener" aria-label="Kane Guglielmi on Instagram"><svg class="social-icon" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"/></svg><span>@kaneguglielmi</span></a>
+            <a href="https://x.com/kaneguglielmi" target="_blank" rel="noopener" aria-label="Kane Guglielmi on X"><svg class="social-icon" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z"/></svg><span>@kaneguglielmi</span></a>
+          </div>
+        </div>
+      </div>
+      <!-- Kit form: set KIT_FORM_ID in the script at the bottom. Field names match Kit's form API. -->
+      <form class="signup" id="signup" method="post" novalidate>
+        <div class="field">
+          <label for="signup-email">Email</label>
+          <input id="signup-email" name="email_address" type="email" autocomplete="email" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="signup-country">Country</label>
+          <select id="signup-country" name="fields[country]" required>
+                <option value="" disabled selected>Select your country</option>
+                <option>Australia</option>
+                <option>New Zealand</option>
+                <option>United States</option>
+                <option>United Kingdom</option>
+                <option>Canada</option>
+                <option>Ireland</option>
+                <option>Germany</option>
+                <option>Netherlands</option>
+                <option>France</option>
+                <option>Italy</option>
+                <option>Spain</option>
+                <option>Mexico</option>
+                <option>Other</option>
+          </select>
+        </div>
+        <button class="btn primary" type="submit">Notify me</button>
+        <p class="signup-status" id="signup-status" role="status" aria-live="polite"></p>
+        <p class="signup-fine">Only news about the film. Unsubscribe any time. See our <a href="privacy.html">Privacy Policy</a>.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="band" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head"><h2 id="faq-title">Questions</h2></div>
+      <div class="faq">
+        <details>
+          <summary>How do I watch after buying?</summary>
+          <p>After checkout you’re taken to the film’s viewing page, where you can press play straight away. To watch again later, use “Log in to watch” on this page with the email you purchased with.</p>
+        </details>
+        <details>
+          <summary>Do I pay once or subscribe?</summary>
+          <p>You pay once, with no subscription. After buying, you can stream the film at home whenever you like.</p>
+        </details>
+        <details id="devices">
+          <summary>Which devices can I use?</summary>
+          <p>Watch in an up-to-date web browser, such as Chrome, Safari, Firefox or Edge, on your computer, phone or tablet. Sign in with the email you bought the film with.</p>
+          <p>To watch on your TV, cast from Chrome with a Chromecast, use AirPlay from an iPhone, iPad or Mac, or connect your laptop to the TV with an HDMI cable. Smart TV web browsers and TVs with Chromecast built in aren’t supported.</p>
+          <p>The film plays in 5.1 surround where your browser, device and sound system support it. Otherwise it plays in stereo.</p>
+        </details>
+        <details>
+          <summary>I’m having trouble with my purchase</summary>
+          <p>Vimeo handles all payments, viewing access and purchase support for the film. Visit the <a href="https://kaneguglielmi.vhx.tv/help" target="_blank" rel="noopener">Vimeo OTT help centre</a> and their team will help you.</p>
+        </details>
+        <details id="screenings">
+          <summary>Can I screen the film at an event?</summary>
+          <p>Your purchase is for personal viewing at home. To show <strong>COMMON WEALTH</strong> to an audience, such as in a cinema, hall, school, club, festival or event, you need a screening licence. This applies whether or not you charge for entry.</p>
+          <p>To arrange one, email <a href="mailto:ciao@darkwoodentertainment.com">ciao@darkwoodentertainment.com</a> with your venue, date and expected audience size.</p>
+          <p class="legal-note">Screening the film publicly without a licence infringes copyright under the <em>Copyright Act 1968</em> (Cth) and equivalent laws overseas, and penalties may apply. See our <a href="terms.html">Terms of Use</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <div>© 2026 Darkwood Entertainment Pty Ltd</div>
+  </div>
+</footer>
+
+<div class="sticky-buy"><a class="btn primary" data-ott href="#">Buy &amp; watch now</a></div>
+
+<script>
+  // ====== CONFIGURE THESE TWO LINES ======
+  // Your themed Vimeo OTT site (ideally on a subdomain, e.g. https://watch.commonwealthfilm.com).
+  var OTT_URL = "https://kaneguglielmi.vhx.tv";
+  // Buy buttons go straight to checkout. Use "/products/common-wealth-2026" to land on the product page instead.
+  var OTT_PRODUCT_PATH = "/checkout/common-wealth-2026?purchase=1";
+  // Kit form ID (the number in your Kit form's embed code, e.g. 1234567). Leave "" until the form exists.
+  var KIT_FORM_ID = "10074549";
+  // =======================================
+
+  (function () {
+    var base = OTT_URL.replace(/\/$/, "");
+    document.querySelectorAll("a[data-ott]").forEach(function (a) {
+      var kind = a.getAttribute("data-ott");
+      a.href = kind === "login" ? base + "/login" : base + OTT_PRODUCT_PATH;
+      a.rel = "noopener";
+    });
+  })();
+
+  // Email sign-up: sends to Kit in the background and shows the result here.
+  // If that can't happen (old browser, blocked request), it falls back to a normal form post to Kit.
+  (function () {
+    var form = document.getElementById("signup");
+    var status = document.getElementById("signup-status");
+    if (!form) return;
+    var action = KIT_FORM_ID ? "https://app.kit.com/forms/" + KIT_FORM_ID + "/subscriptions" : "";
+    if (action) form.action = action;
+    var done = "You're on the list. Check your inbox to confirm your email.";
+    if (location.hash === "#subscribed") status.textContent = done;
+    form.addEventListener("submit", function (e) {
+      var email = form.elements["email_address"], country = form.elements["fields[country]"];
+      e.preventDefault();
+      if (!email.checkValidity()) { status.textContent = "Enter a valid email address."; email.focus(); return; }
+      if (!country.value) { status.textContent = "Select your country."; country.focus(); return; }
+      if (!action) { status.textContent = "Sign-ups aren't connected yet."; return; }
+      var button = form.querySelector("button");
+      button.disabled = true; status.textContent = "Signing you up…";
+      fetch(action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (res.ok && (!res.d.status || res.d.status === "success")) { form.reset(); status.textContent = done; }
+          else { status.textContent = "That didn't go through. Check your email address and try again."; }
+        })
+        .catch(function () { form.submit(); })
+        .then(function () { button.disabled = false; });
+    });
+  })();
+
+  // Footnote links open the FAQ answer they point to
+  (function () {
+    function openTarget() {
+      var el = location.hash && document.getElementById(location.hash.slice(1));
+      if (el && el.tagName === "DETAILS") el.open = true;
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener("click", function () {
+        var el = document.getElementById(a.getAttribute("href").slice(1));
+        if (el && el.tagName === "DETAILS") el.open = true;
+      });
+    });
+    window.addEventListener("hashchange", openTarget);
+    openTarget();
+  })();
+</script>
 </body>
 </html>
