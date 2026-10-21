@@ -5,22 +5,15 @@
   var year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // The labels this person refuses. Edit freely.
-  var words = [
-    "director", "creator", "brand", "persona", "genre",
-    "writer", "journalist", "trend", "category", "producer"
-  ];
-  var el = document.getElementById("word");
-  if (el && !reduce) {
-    var i = 0;
-    setInterval(function () {
-      el.classList.add("out");
-      setTimeout(function () {
-        i = (i + 1) % words.length;
-        el.textContent = words[i];
-        el.classList.remove("out");
-      }, 350);
-    }, 2400);
+  // Touch screens have no hover: the first tap reveals the linked word, the second follows it
+  var link = document.querySelector(".redact-link");
+  if (link && window.matchMedia("(hover: none)").matches) {
+    link.addEventListener("click", function (e) {
+      if (!link.classList.contains("is-revealed")) {
+        e.preventDefault();
+        link.classList.add("is-revealed");
+      }
+    });
   }
 
   // Soft light that follows the cursor (mouse devices only)
